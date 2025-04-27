@@ -7,9 +7,10 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ChatMessageModule } from './chat-message/chat-message.module';
 import { MessageModule } from './message/message.module';
 import { GroupModule } from './group/group.module';
+import { GroupMessageModule } from './group-message/group-message.module';
 
 @Module({
-  imports: [UserModule, PrismaModule, ChatMessageModule, MessageModule, GroupModule],
+  imports: [UserModule, PrismaModule, ChatMessageModule, MessageModule, GroupModule, GroupMessageModule],
   controllers: [AppController],
   providers: [AppService, SmsService],
 })
