@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { SmsService } from 'src/sms/sms.service';
 import { totp } from "otplib";
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -40,8 +40,11 @@ export class UserService {
             } })
             return newUser
         } catch (error) {
+            if (error.code === 'P2002') {
+                throw new BadRequestException('Username already exists');
+            }
             console.log(error.message);
-            throw new InternalServerErrorException
+            throw new InternalServerErrorException(error.message || 'Internal server error')
         }
     }
 
@@ -56,6 +59,15 @@ export class UserService {
         } catch (error) {
             console.log(error.message);
             throw new InternalServerErrorException
+        }
+    }
+
+    async getUser() {
+        try {
+            return await this.prisma.user.findMany()
+        } catch (error) {
+            console.log(error.message);
+            throw new InternalServerErrorException('Internal server error')
         }
     }
 }

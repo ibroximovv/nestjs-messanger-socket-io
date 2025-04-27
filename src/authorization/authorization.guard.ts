@@ -13,13 +13,13 @@ export class AuthorizationGuard implements CanActivate {
       const request: Request = context.switchToHttp().getRequest();
       const token = request.headers.authorization?.split(' ')?.[1]
       if (!token) {
-        throw new UnauthorizedException('token not provided')
+        throw new UnauthorizedException('token not found')
       }
       const data = this.jwt.verify(token)
-      request['user'] = data.id;
+      request['user'] = data;
       return true;
     } catch (error) {
-      throw new UnauthorizedException
+      throw new UnauthorizedException(error.message || `Invalid or experied token` )
     }
   }
 }

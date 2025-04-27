@@ -11,6 +11,6 @@ import { PrismaService } from 'src/prisma/prisma.service';
     secret: 'jwtsecret' 
   })],
   controllers: [UserController],
-  providers: [UserService, SmsService, JwtService, PrismaService],
+  providers: [UserService, SmsService, PrismaService],
 })
 export class UserModule {}
