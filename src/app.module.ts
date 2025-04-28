@@ -8,10 +8,11 @@ import { ChatMessageModule } from './chat-message/chat-message.module';
 import { MessageModule } from './message/message.module';
 import { GroupModule } from './group/group.module';
 import { GroupMessageModule } from './group-message/group-message.module';
+import { MulterController } from './multer/multer.controller';
 
 @Module({
   imports: [UserModule, PrismaModule, ChatMessageModule, MessageModule, GroupModule, GroupMessageModule],
-  controllers: [AppController],
+  controllers: [AppController, MulterController],
   providers: [AppService, SmsService],
 })
 export class AppModule {}
