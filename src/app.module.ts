@@ -10,9 +10,11 @@ import { GroupModule } from './group/group.module';
 import { GroupMessageModule } from './group-message/group-message.module';
 import { MulterController } from './multer/multer.controller';
 import { GlobalMessageModule } from './global-message/global-message.module';
+import { ChannelModule } from './channel/channel.module';
+import { ChannelMessageModule } from './channel-message/channel-message.module';
 
 @Module({
-  imports: [UserModule, PrismaModule, ChatMessageModule, MessageModule, GroupModule, GroupMessageModule, GlobalMessageModule],
+  imports: [UserModule, PrismaModule, ChatMessageModule, MessageModule, GroupModule, GroupMessageModule, GlobalMessageModule, ChannelModule, ChannelMessageModule],
   controllers: [AppController, MulterController],
   providers: [AppService, SmsService],
 })
